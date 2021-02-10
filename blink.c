@@ -37,8 +37,8 @@ void main(void){
   // loop infinito
   while(1){
   
-    toggle_led(1000);
-    pisca_led();
+    toggle_led(1000);       // chama a funcao toggle_led
+    pisca_led();            // chama a funcap pisca_led
     
   } // end while
 
@@ -48,16 +48,16 @@ void main(void){
 
 void toggle_led(int tempo){
 
-  PORTD ^= LED;
-  for(int i=0; i< tempo; i++) _delay_ms(1);   
+  PORTD ^= LED;                     // troca de estado o pino, a cada execucao      
+  for(int i=0; i< tempo; i++) _delay_ms(1);   // rotina de delay
   
-} / end void toggle led
+} // end void toggle led
 
 void pisca_led(){
 
   PORTD |= LED;           // seta o pino PD0 (high)
-  _delay_ms(500);
+  _delay_ms(500);         // espara um pouco, 1/2 segundo
   PORTD &= ~LED;          // limpa o pino PD0 (low)
-  _delay_ms(500);
+  _delay_ms(500);         // espera um pouco, 1/2 segundo
 
-} // emd void pisca led
+} // end void pisca led
