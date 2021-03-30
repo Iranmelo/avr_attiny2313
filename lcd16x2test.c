@@ -20,7 +20,7 @@
 // definicoes do lcd
 //instrucoes do lcd
 
-#define LCD_TRY_CONFIG_4BITS	0x03
+#define LCD_TRY_CONFIG_4BITS		0x03
 #define LCD_CONFIG_4BITS		0x02
 #define LCD_TWO_LINES			0x28
 
@@ -35,10 +35,10 @@
 
 // prototipos das funcoes auxiliares
 
-void iniciaLcd();						// configura
-void enviaDados(uint8_t, uint8_t);
-void escreve4bits(uint8_t);
-void habilitaPulso();
+void iniciaLcd();			// configuracao incial do lcd
+void enviaDados(uint8_t, uint8_t);	// recebe as informacoes do lcd
+void escreve4bits(uint8_t);		// escreve as infomacoes no barramento do lcd
+void habilitaPulso();			// esvreve o pulso de habilitacao do lcd
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -59,32 +59,32 @@ void habilitaPulso();
 int main(void)
 {
    
-   	DDRD = 0xFF;  // configura a porta D como saida
+	DDRD = 0xFF;  // configura a porta D como saida
   	iniciaLcd();
    	
    	// escreve caracteres na primeira linha
    	// primeira linha = 0x80
-   	enviaDados((LCD_FIRST_LINE + 3),0); // primeira linha mais 3 posicoes
+    	enviaDados((LCD_FIRST_LINE + 3),0); // primeira linha mais 3 posicoes
    	
-	  enviaDados("L",1); //enviando caractere por caractere
-    enviaDados("C",1); //enviando caractere por caractere
-    enviaDados("D",1); //enviando caractere por caractere
-    enviaDados(" ",1); //enviando caractere por caractere
-    enviaDados("T",1); //enviando caractere por caractere
-    enviaDados("E",1); //enviando caractere por caractere
-    enviaDados("S",1); //enviando caractere por caractere
-    enviaDados("T",1); //enviando caractere por caractere
+    	enviaDados("L",1); //enviando caractere por caractere
+    	enviaDados("C",1); //enviando caractere por caractere
+    	enviaDados("D",1); //enviando caractere por caractere
+    	enviaDados(" ",1); //enviando caractere por caractere
+    	enviaDados("T",1); //enviando caractere por caractere
+    	enviaDados("E",1); //enviando caractere por caractere
+    	enviaDados("S",1); //enviando caractere por caractere
+    	enviaDados("T",1); //enviando caractere por caractere
     
 	 // loop infinito
-    while (1) 
-    { 
+    	while (1) 
+    	{ 
 		    for(uint8_t i= 0; i < 10; i++){
     
-        enviaDados((LCD_SECOND_LINE + 3),0); //desloca o cursor para a segunda linha do LCD comandos
-      	enviaDados((i + 0x30),1); //enviando caractere por caractere
-        _delay_ms(750);
+        		enviaDados((LCD_SECOND_LINE + 3),0); //desloca o cursor para a segunda linha do LCD comandos
+      			enviaDados((i + 0x30),1); //enviando caractere numero decimal em ASCII
+        		_delay_ms(750);
     
-      } // end for
+      			} // end for
     
     } // end while
 	
